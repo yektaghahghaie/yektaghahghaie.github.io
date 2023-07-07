@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: auto;
+      width: 100%;
+      background-color: rgb(217, 233, 238);
+      text-align: center;
+      padding-bottom: 130px;
+      color: black;
+    }
+
+    .focus {
+      margin-top: 130px;
+      margin-bottom: 130px;
+    }
+
+    .text {
+      font-size: 100px;
+    }
+
+    .buttons {
+      margin-top: 130px;
+      margin-right: -17px;
+    }
+
+    .buttons1 {
+      border: none;
+      border-radius: 60px;
+    }
+
+    .buttons2 {
+      border: none;
+      background-color: black;
+    }
+
+    .buttons3 {
+      border: none;
+      background-color: white;
+      font-size: 30px;
+      padding: 0px;
+      color: black;
+    }
+
+    .toggel {
+      position: relative;
+      height: 20px;
+      width: 40px;
+      cursor: pointer;
+      background-color: rgb(176, 139, 93);
+      border-radius: 25px;
+      box-shadow: 0 5px 10px black;
+      appearance: none;
+    }
+
+    .toggel::before {
+      content: "";
+      position: absolute;
+      background-color: rgb(225, 225, 239);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+    }
+
+    .toggel.active::before {
+      left: 20px;
+    }
+
+    .back {
+      background-color: blue;
+    }
+
+    body.lo {
+      background-color: black;
+      width: 100%;
+      color: white;
+      text-align: center;
+      padding-bottom: 130px;
+    }
+
+    .kadr {
+      width: 50px;
+    }
+
+    .text1 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 220px;
+    }
+
+    .text2 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 210px;
+    }
+
+    .text3 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 117px;
+    }
+
+    .text4 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 177px;
+    }
+
+    .text5 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 174px;
+    }
+
+    .text6 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 254px;
+    }
+
+    .text7 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 205px;
+    }
+
+    .text8 {
+      display: flex;
+      padding-top: 10px;
+      padding-bottom: 20px;
+      justify-content: space-around;
+      gap: 262px;
+    }
+
+    .tanzimat {
+      background-color: white;
+      color: black;
+      width: 400px;
+      height: 440px;
+      margin: 200px auto;
+      border-radius: 15px;
+      display: none;
+    }
+
+    .tanzimaty {
+      background-color: black;
+      color: white;
+      width: 400px;
+      height: 440px;
+      margin: 200px auto;
+      border-radius: 15px;
+      display: none;
+    }
+
+    .tanzimat2 {
+      background-color: black;
+      width: 300px;
+      height: 150px;
+      margin: 200px auto;
+      border-radius: 10px;
+      padding: 20px 0px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="timer1">
+    <div id="koly">
+      <img class="focus" src="Chip (2).svg">
+      <div class="text" id="timer"></div>
+      <div class="buttons">
+        <button id="noghte" class="buttons1"><img src="8.svg"></button>
+        <button id="startButton" class="buttons1"><img id="taghir" src="12.svg"></button>
+        <button onclick="changePage()" class="buttons1"><img src="9.svg"></button>
+      </div>
+    </div>
+    <div class="tanzimat">
+      <div class="text8">
+        <div class="">Sitting</div>
+        <button id="zarb" class="buttons3">x</button>
+      </div>
+      <div class="text1">
+        <div class="">Dark mode</div>
+        <input class="toggel" type="checkbox">
+      </div>
+      <div class="text2">
+        <div class="">Focus longth</div>
+        <input class="kadr" id="myInput" type="number" value="25">
+      </div>
+      <div class="text3">
+        <div class="">Pomodoros until long break</div>
+        <input class="kadr" id="pomodoro" type="number" value="5">
+      </div>
+      <div class="text4">
+        <div class="">Short break longth</div>
+        <input class="kadr" id="myInput2" type="number" value="5">
+      </div>
+      <div class="text5">
+        <div class="">Long break longth</div>
+        <input class="kadr" id="myInput3" type="number" value="15">
+      </div>
+      <div class="text6">
+        <div class="">Sound</div>
+        <input id="sound" class="toggel" type="checkbox">
+      </div>
+      <div class="text7">
+        <div class="">Notifications</div>
+        <input class="toggel" type="checkbox">
+      </div>
+    </div>
+    <div class="tanzimat2">
+      <img src="Menu Item.svg">
+      <button id="preferens" class="buttons2"><img src="Menu Item (2).svg"></button>
+      <img src="Menu Item (1).svg">
+    </div>
+  </div>
+  <script src="script3.js"></script>
+</body>
+
+</html>
