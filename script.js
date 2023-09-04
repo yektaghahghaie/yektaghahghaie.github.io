@@ -1,71 +1,60 @@
-let timer;
-const inputElement2 = document.getElementById('myInput');
-const inputValue2 = inputElement2.value
-if (isNaN(inputValue2)) {
-  inputValue2 = inputElement2.defaultValue
-}
-console.log(inputValue2);
-let seconds = inputValue2 * 60;
+let timerInterval;
+let remainingSeconds;
 function startTimer() {
-  timer = setInterval(function () {
-    seconds--;
-    if (seconds < 0) {
-      clearInterval(timer);
-      alert("زمان به پایان رسید!");
-      seconds = inputValue2 * 60;
-    }
-    let minutes = Math.floor(seconds / 60);
-    let remainingSeconds = seconds % 60;
-
-    if(remainingSeconds<10){
-      document.getElementById("timer").innerHTML ="0"+ minutes + "<br>" +"0" + remainingSeconds;
-    }else if(minutes<10){
-    document.getElementById("timer").innerHTML ="0" + minutes + "<br>" + remainingSeconds;
-    }else if(minutes<10&&remainingSeconds<10){
-      document.getElementById("timer").innerHTML ="0" + minutes + "<br>" +"0"+ remainingSeconds;
-    }else{
-      document.getElementById("timer").innerHTML = minutes + "<br>" + remainingSeconds;
-    }
-  }, 1000);
-}
-const mixBut=document.getElementById("startButton")
-mixBut.addEventListener("click", Start);
-function Start(){
-  document.getElementById("taghir").src ="Button (2).svg"
-  startTimer()
-  console.log("Started");
-  mixBut.removeEventListener("click", Start);
-  mixBut.addEventListener("click", Stop);
-  mixBut.value = "Stop";
-}
-
-function Stop(){
-  document.getElementById("taghir").src ="10.svg"
-  clearInterval(timer)
-  console.log("Stopped");
-  mixBut.removeEventListener("click", Stop);
-  mixBut.addEventListener("click", Start);
-  mixBut.value = "Start";
-}
-
-
-
-function changePage() {
-  const currentPage = window.location.href;
-  if (currentPage === "file:///C:/Users/yktaq/Desktop/chalesh1/calesh1.html") {
-    window.location.href = "file:///C:/Users/yktaq/Desktop/chalesh1/calesh2.html";
-  } else if (currentPage === "file:///C:/Users/yktaq/Desktop/chalesh1/calesh2.html") {
-    window.location.href = "file:///C:/Users/yktaq/Desktop/chalesh1/calesh3.html";
-  } else if (currentPage === "file:///C:/Users/yktaq/Desktop/chalesh1/calesh3.html") {
-    window.location.href = "file:///C:/Users/yktaq/Desktop/chalesh1/calesh1.html";
+  sound1()
+  const input = document.getElementById("myInput");
+  const startButton = document.getElementById("startButton");
+  const l = document.getElementById("timer")
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    document.getElementById("taghir").src="images/Button (2).svg"
+  } else {
+    ko = parseInt(input.value);
+    localStorage.setItem("savedNumber",ko);
+    remainingSeconds = parseInt(input.value)*60;
+    document.getElementById("taghir").src="images/10.svg"
+    timerInterval = setInterval(updateTimer, 1000);
   }
 }
+
+function updateTimer() {
+  const input = document.getElementById("myInput");
+  const l = document.getElementById("timer")
+  remainingSeconds--;
+  if (remainingSeconds <= 0) {
+    clearInterval(timerInterval);
+  }
+  const minutes = Math.floor(remainingSeconds/60);
+  const remainingSecondss = remainingSeconds% 60;
+  if (remainingSeconds < 10) {
+    document.getElementById("timer").innerHTML = "0" + minutes + "<br>" + "0" + remainingSecondss;
+  } else if (minutes < 10) {
+    document.getElementById("timer").innerHTML = "0" + minutes + "<br>" + remainingSecondss;
+  } else if (minutes < 10 && remainingSeconds < 10) {
+    document.getElementById("timer").innerHTML = "0" + minutes + "<br>" + "0" + remainingSecondss;
+  } else {
+    document.getElementById("timer").innerHTML = minutes + "<br>" + remainingSecondss;
+  }
+}
+
+document.getElementById("startButton").addEventListener("click", startTimer);
+function loadNumber() {
+  var savedNumber = localStorage.getItem("savedNumber");
+  if (savedNumber) {
+    var numberInput = document.getElementById("myInput2");
+    numberInput.value = savedNumber;
+  }
+}
+window.onload = loadNumber;
 
 const togglebtn = document.querySelector(".toggel");
 const tanzimat3 = document.querySelector(".tanzimat");
 const kol = document.body;
 if (localStorage.getItem('isDarkMode') === 'true') {
   kol.classList.add('lo');
+  togglebtn.classList.toggle("active");
+  togglebtn.classList.toggle("back");
 }
 togglebtn.addEventListener("click", function () {
   togglebtn.classList.toggle("active");
@@ -78,15 +67,18 @@ togglebtn.addEventListener("click", function () {
     localStorage.setItem('isDarkMode', 'false');
   }
 })
-const sound = document.getElementById("sound");
-sound.addEventListener("click", function () {
-  if(sound.checked){
+
+const sound2 = document.getElementById("sound");
+sound2.addEventListener("click", function () {
+  sound2.classList.toggle("active");
+  sound2.classList.toggle("back");
+})
+ function sound1() {
+  if(sound2.checked){
     let audio = new Audio("sound.mp3");
     audio.play();
   }
-  sound.classList.toggle("active");
-  sound.classList.toggle("back");
-})
+}
 const noghte = document.getElementById("noghte");
 const tanzimat2 = document.querySelector(".tanzimat2");
 const koly = document.getElementById("koly");
